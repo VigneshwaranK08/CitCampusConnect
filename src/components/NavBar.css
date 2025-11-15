@@ -1,14 +1,219 @@
 .NavBar {
-    background-color: #eee;
-    display: flex;
-    flex-direction: row;
-    height: 96px;
-    width: 100vw;
-    padding: 8px;
-    align-items: center;
+  --bg: #f7f8fb;
+  --accent: #0e1c6c;
+  --muted: #6b7280;
+  --icon-bg: rgba(14, 28, 108, 0.06);
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 96px;
+  width: 100vw;
+  padding: 0 20px;
+  box-sizing: border-box;
+  gap: 12px;
 }
+
+/* Top-left logo link */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
+/* Title link */
+.navbar-title {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
 h1.HeadLine {
-    margin-left: 16px;
-    color: #0D0D57;
-    font-weight: 450;
+  margin-left: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.2px;
+  margin: 0;
+  transition: opacity 180ms ease;
+}
+
+.navbar-title:hover h1.HeadLine {
+  opacity: 0.8;
+}
+
+/* Container for the right-side icons */
+.links {
+  display: flex;
+  align-items: center;
+}
+
+.links ul {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.links li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: transparent;
+  transition: background-color 180ms ease, transform 160ms ease;
+  cursor: pointer;
+}
+
+.links li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 180ms ease, transform 160ms ease;
+}
+
+.links li a:hover,
+.links li a:focus-within {
+  background: var(--icon-bg);
+  transform: translateY(-2px);
+}
+
+.links li img {
+  width: 22px;
+  height: 22px;
+  display: block;
+  filter: none;
+}
+
+.links li:hover,
+.links li:focus-within {
+  background: var(--icon-bg);
+  transform: translateY(-2px);
+}
+
+.links li:active {
+  transform: translateY(0);
+}
+
+/* Small visual tweak for the active/primary icon (if you add an "active" class) */
+.links li.active {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 28, 108, 0.08),
+    rgba(14, 28, 108, 0.04)
+  );
+}
+
+/* Accessible focus outline for keyboard users */
+.links li:focus-visible {
+  outline: 2px solid rgba(14, 28, 108, 0.12);
+  outline-offset: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .NavBar {
+    padding: 0 12px;
+    height: 72px;
+    gap: 8px;
+  }
+
+  .NavBar > img {
+    height: 48px;
+  }
+
+  h1.HeadLine {
+    display: none;
+  }
+
+  .links li {
+    width: 40px;
+    height: 40px;
+  }
+
+  .links li img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .links li,
+  .links li:hover,
+  .links li:active {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* small auth links on the right */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+}
+
+.nav-actions .auth-link {
+  color: var(--accent);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: white;
+  border: 2px solid var(--accent);
+  transition: background-color 180ms ease, color 180ms ease;
+  cursor: pointer;
+}
+
+.nav-actions .auth-link:hover {
+  opacity: 0.9;
+}
+
+.nav-actions .auth-link.active {
+  background: var(--accent);
+  color: white;
+  border: 2px solid var(--accent);
+}
+
+.nav-actions .auth-cta {
+  background: white;
+  color: var(--accent);
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 2px solid var(--accent);
+  transition: background-color 180ms ease, color 180ms ease;
+  cursor: pointer;
+}
+
+.nav-actions .auth-cta:hover {
+  opacity: 0.9;
+}
+
+.nav-actions .auth-cta.active {
+  background: var(--accent);
+  color: white;
+  border: 2px solid var(--accent);
+}
+
+@media (max-width: 640px) {
+  .nav-actions .auth-link {
+    display: none;
+  }
 }
