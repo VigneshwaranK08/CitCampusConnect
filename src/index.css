@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import "tailwindcss";
-
-@theme {
-    --color-darkBlue : #0D0D57;
-    --color-lightGray: #eee;
-}
 
 * {
     /* font-family: "Roboto", sans-serif; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "JetBrains Mono", monospace; 
     font-size: 32px;
     font-weight: 250;
+}
+
+.heroText{
+    text-align: center;
 }

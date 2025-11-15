@@ -5,7 +5,7 @@ function App() {
   return (
     <>
         <NavBar/>
-        <div className='text-center'>HomePage</div>
+        <div className='heroText'>HomePage</div>
     </>
   )
 }
