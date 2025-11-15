@@ -1,18 +1,17 @@
 import React from 'react'
-import './NavBar.css'
 
 function NavBar() {
   return (
-    <div className='NavBar'>
-      <img className="w-16" src="../../public/assests/appLogo.svg" alt="AppLogo" />
-      <h1 className='text-darkBlue'>Campus Connects</h1>
-      <div className="links">
+    <div className='flex items-center p-2 h-14 w-full bg-lightGray'>
+      <img className="w-16 " src="/assests/appLogo.svg" alt="AppLogo" />
+      <h1 className='mx-4 text-darkBlue'>Campus Connects</h1>
+      <div className="">
         <ul>
-          <li><img src="../../public/assests/house.svg" alt="" /></li>
-          <li><img src="../../public/assests/newspaper.svg" alt="" /></li>
-          <li><img src="../../public/assests/plus.svg" alt="" /></li>
-          <li><img src="../../public/assests/comment.svg" alt="" /></li>
-          <li><img src="../../public/assests/user.svg" alt="" /></li>
+          <li><a href="#"><img src="/assests/house.svg" alt="" /></a></li>
+          <li><a href="#"><img src="/assests/newspaper.svg" alt="" /></a></li>
+          <li><a href="#"><img src="/assests/plus.svg" alt="" /></a></li>
+          <li><a href="#"><img src="/assests/comment.svg" alt="" /></a></li>
+          <li><a href="#"><img src="/assests/user.svg" alt="" /></a></li>
         </ul>
       </div>
     </div>
