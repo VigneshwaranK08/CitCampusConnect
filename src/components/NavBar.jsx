@@ -4,8 +4,8 @@ import './NavBar.css'
 function NavBar() {
   return (
     <div className='NavBar'>
-      <img src="../../public/assests/appLogo.svg" alt="AppLogo" height="64px" />
-      <h1 className='HeadLine'>Campus Connects</h1>
+      <img className="w-16" src="../../public/assests/appLogo.svg" alt="AppLogo" />
+      <h1 className='text-darkBlue'>Campus Connects</h1>
       <div className="links">
         <ul>
           <li><img src="../../public/assests/house.svg" alt="" /></li>
