@@ -5,7 +5,8 @@ function App() {
   return (
     <>
       <NavBar />
-      <div className="heroText">HomePage 1</div>
+      <div className="heroText">HomePage</div>
+      <div className="heroText">Footer</div>
     </>
   );
 }
