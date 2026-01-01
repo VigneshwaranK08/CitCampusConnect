@@ -1,8 +1,6 @@
-import { useState } from "react";
 import logo from "../assets/Group-3.svg"
 
-export default function Navbar() {
-  const [active, setActive] = useState("home");
+export default function Navbar({ active, setActive }) {
 
   return (
     <nav className="navbar">
