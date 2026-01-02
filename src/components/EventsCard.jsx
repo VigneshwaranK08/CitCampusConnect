@@ -9,8 +9,8 @@ export default function EventsCard({ title, events = [] }) {
         events.map((event, index) => (
           <div key={index} className="event-item">
             <div className="event-info">
-              <h4 className="event-name">{event.name}</h4>
-              <span className="event-club">By {event.club}</span>
+              <h4 className="event-name">{event.CardTitle}</h4>
+              <span className="event-club">By {event.Organiser}</span>
               <p className="event-date">{event.date}</p>
             </div>
 

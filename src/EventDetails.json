@@ -1,0 +1,23 @@
+{
+    "card1" : {
+      "CardTitle" : "Appathon",
+      "Organiser" : "celestius",
+      "Desc" : "desctiption about the event that is going to happen on some day",
+      "date": "12 Feb 08",
+      "bgUrl" : "../../public/ClubCelestius.jpg"
+    },
+    "card2" : {
+      "CardTitle" : "Workshop: AI & ML",
+      "Organiser" : "Assymetric",
+      "Desc" : "desctiption about the event that is going to happen on some day",
+      "date": "12 Feb 08",
+      "bgUrl" : "../../public/ClubCelestius.jpg"
+    },
+    "card3" : {
+      "CardTitle" : "UI/UX on the Spot",
+      "Organiser" : "Tezos",
+      "Desc" : "desctiption about the event that is going to happen on some day",
+      "date": "12 Feb 08",
+      "bgUrl" : "../../public/ClubCelestius.jpg"
+    }
+  }

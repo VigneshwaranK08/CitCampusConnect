@@ -11,10 +11,10 @@ function EventsPageCard(props) {
             {props.CardTitle}
         </div>
         <div className="Organiser">
-            By {props.Organiser}
+            By {props.Organiser}  <span className='Date'>On {props.date} </span>
         </div>
         <div className="Desc">
-            By {props.Desc}
+            {props.Desc}
         </div>
 
 

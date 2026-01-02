@@ -2,6 +2,7 @@ import React from 'react'
 import SearchBar from "./SearchBar";
 import PostCard from "./PostCard";
 import EventsCard from "./EventsCard";
+import EventDetails from '../EventDetails.json'
 
 function HomePage() {
   return (
@@ -25,10 +26,9 @@ function HomePage() {
           <EventsCard 
               title="Upcoming Events"
               events={[
-                  { name: "Appathon", date: "Dec 02, 10:00 AM", club: "Celestius"},
-                  { name: "Workshop: AI & ML", date: "Dec 05, 2:00 PM", club: "Assymetric" },
-                  { name: "UI/UX on the Spot", date: "Dec 16, 10:30 AM", club: "Tezos"},
-                  { name: "Pongal", date: "Jan 16, 9:00 AM", club: "Immerse"}
+                  {...EventDetails.card1},
+                  {...EventDetails.card2},
+                  {...EventDetails.card3},
               ]}
           />
         </div>

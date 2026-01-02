@@ -34,6 +34,10 @@
     margin-bottom: 1vh;
     margin-left: 8vh;
 }
+.Organiser .Date{
+    font-size: 12px;
+    margin-left: 9vh;
+}
 .Desc{
     color: #444;
     margin: 0 5vh;
