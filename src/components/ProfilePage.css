@@ -40,6 +40,7 @@ img.pfp{
 }
 
 .details button{
+    cursor: pointer;
     margin-top: 10vh;
     border: none;
     height: 5vh;
