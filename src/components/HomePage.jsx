@@ -23,14 +23,14 @@ function HomePage() {
 
         <div className="side-section">
           <EventsCard 
-    title="Upcoming Events"
-    events={[
-        { name: "Appathon", date: "Dec 02, 10:00 AM", club: "Celestius"},
-        { name: "Workshop: AI & ML", date: "Dec 05, 2:00 PM", club: "Assymetric" },
-        { name: "UI/UX on the Spot", date: "Dec 16, 10:30 AM", club: "Tezos"},
-        { name: "Pongal", date: "Jan 16, 9:00 AM", club: "Immerse"}
-    ]}
-/>
+              title="Upcoming Events"
+              events={[
+                  { name: "Appathon", date: "Dec 02, 10:00 AM", club: "Celestius"},
+                  { name: "Workshop: AI & ML", date: "Dec 05, 2:00 PM", club: "Assymetric" },
+                  { name: "UI/UX on the Spot", date: "Dec 16, 10:30 AM", club: "Tezos"},
+                  { name: "Pongal", date: "Jan 16, 9:00 AM", club: "Immerse"}
+              ]}
+          />
         </div>
       </div>
   )
