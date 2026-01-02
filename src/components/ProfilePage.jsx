@@ -12,7 +12,7 @@ function ProfilePage() {
                 <p>{UserDetails.name}</p>
                 <h2>Email :</h2>
                 <p>{UserDetails.email}</p>
-
+                <button>Sign Out</button>
            </div>
         </div> 
     </div>

@@ -38,3 +38,13 @@ img.pfp{
     font-size: 17px;
     margin-left: 5vh;
 }
+
+.details button{
+    margin-top: 10vh;
+    border: none;
+    height: 5vh;
+    width: 13vw;
+    border-radius: 2vh;
+    background-color: #fff;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.07)
+}
