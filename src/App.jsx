@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import EventsPage from "./components/EventsPage";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
 
       {active === "home" && <HomePage />}
       {active === "feed" && <EventsPage />}
+      {active === "profile" && <ProfilePage />}
       
     </div>
   );
