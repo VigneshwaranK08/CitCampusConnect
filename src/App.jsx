@@ -1,22 +1,21 @@
-import { useState } from "react";
-import Navbar from "./components/Navbar";
-import HomePage from "./components/HomePage";
-import EventsPage from "./components/EventsPage";
-import ProfilePage from "./components/ProfilePage";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+
+import Login from "./Login";
+import Home from "./Home";
 
 function App() {
+  const [user, setUser] = useState(null);
 
-  const [active, setActive] = useState('home')
+  useEffect(() => {
+    return onAuthStateChanged(auth, setUser);
+  }, []);
 
   return (
-    <div className="app-wrapper">
-      <Navbar active={active} setActive={setActive} />
-
-      {active === "home" && <HomePage />}
-      {active === "feed" && <EventsPage />}
-      {active === "profile" && <ProfilePage />}
-      
-    </div>
+    <>
+      {user ? <Home user={user} /> : <Login />}
+    </>
   );
 }
 

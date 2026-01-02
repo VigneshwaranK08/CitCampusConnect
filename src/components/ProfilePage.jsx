@@ -1,18 +1,27 @@
 import React from 'react'
-import "./ProfilePage.css"
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 import UserDetails from "../UserDetails.json"
+import "./ProfilePage.css"
 
-function ProfilePage() {
+function ProfilePage({ user }) {
+
+  if (!user) return null;
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
   return (
     <div className='container'>
        <div className="subcontainer">
-           <img className='pfp' src={UserDetails.profile} alt="" /> 
+           <img className='pfp' src={user.photoURL} alt="" /> 
            <div className='details'>
                 <h2>Name :</h2>
-                <p>{UserDetails.name}</p>
+                <p>{user.displayName}</p>
                 <h2>Email :</h2>
-                <p>{UserDetails.email}</p>
-                <button>Sign Out</button>
+                <p>{user.email}</p>
+                <button onClick={handleLogout}>Sign Out </button>
            </div>
         </div> 
     </div>
