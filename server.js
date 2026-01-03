@@ -1,24 +1,46 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const app = express();
-const PORT = 5000;
-require("./models/User");
-console.log(mongoose.modelNames());
+const express = require("express")
+const mongoose = require("mongoose")
+const cors = require("cors")
 
-mongoose
-  .connect("mongodb://127.0.0.1:27017/socialmedia")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Could not connect to MongoDB", err));
+const app = express()
+const PORT = 5000
 
-app.use(express.json());
-  
-const loginRoute = require("./pages/login");
-const signupRoute = require("./pages/signup");
-  
-app.use("/api", signupRoute);
-app.use("/api", loginRoute);
-  
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+// MIDDLEWARE
+
+app.use(express.json())
+app.use(cors())
+
+
+// MODELS
+
+require("./models/User")
+require("./models/post")
+
+// ROUTES
+
+const signupRoute = require("./pages/signup")
+const loginRoute = require("./pages/login")
+const postRoutes = require("./pages/post")
+
+app.use("/api", signupRoute)
+app.use("/api", loginRoute)
+app.use("/api", postRoutes)
+
+// DATABASE + SERVER
+
+const startServer = async () => {
+  try {
+    await mongoose.connect("mongodb://localhost:27017/socialmedia")
+    console.log("Connected to MongoDB")
+
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`)
+    })
+  } catch (err) {
+    console.error("Could not connect to MongoDB", err)
+    process.exit(1)
+  }
+}
+
+startServer()
