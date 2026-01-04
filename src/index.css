@@ -218,6 +218,17 @@ body {
   .side-section {
     width: 100%;
   }
+  .container .subcontainer{
+    flex-direction: column;
+  }
+  .container .subcontainer img{
+    margin-top: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container .subcontainer .details {
+    margin: 2vh 5vh;
+  }
 }
  .logo {
   display: flex;
