@@ -1,39 +1,161 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { getAuth } from "firebase/auth";
 import SearchBar from "./SearchBar";
-import PostCard from "./PostCard";
 import EventsCard from "./EventsCard";
-import EventDetails from '../EventDetails.json'
+import EventDetails from "../EventDetails.json";
 
-function HomePage() {
+export default function HomePage() {
+  const [posts, setPosts] = useState([]);
+  const [commentText, setCommentText] = useState({}); // per-post input
+
+  const auth = getAuth();
+  const firebaseUser = auth.currentUser;
+
+  const userId = firebaseUser?.uid;
+  const userName = firebaseUser?.displayName || "Unknown User";
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/allpost")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data.posts)) setPosts(data.posts);
+      })
+      .catch((err) => console.error("Failed to fetch posts:", err));
+  }, []);
+
+  const updatePostInState = (updatedPost) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((p) => (p._id === updatedPost._id ? updatedPost : p))
+    );
+  };
+
+  const likePost = async (postId) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/like", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId, userId }),
+      });
+      const updatedPost = await res.json();
+      updatePostInState(updatedPost);
+    } catch (err) {
+      console.error("Like failed:", err);
+    }
+  };
+
+  const unlikePost = async (postId) => {
+    try {
+      const res = await fetch("http://localhost:5000/api/unlike", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ postId, userId }),
+      });
+      const updatedPost = await res.json();
+      updatePostInState(updatedPost);
+    } catch (err) {
+      console.error("Unlike failed:", err);
+    }
+  };
+  
+  const makeComment = async (text, postId) => {
+    if (!text) return;
+
+    try {
+      const res = await fetch("http://localhost:5000/api/comment", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          postId,
+          userId,
+          text,
+          name: userName,
+        }),
+      });
+      const updatedPost = await res.json();
+      updatePostInState(updatedPost);
+
+      
+      setCommentText((prev) => ({ ...prev, [postId]: "" }));
+    } catch (err) {
+      console.error("Comment failed:", err);
+    }
+  };
+
+  const getPostAuthorName = (post) => {
+    if (!post.postedBy) return "Unknown User";
+    if (typeof post.postedBy === "object" && post.postedBy.name)
+      return post.postedBy.name;
+    return "Unknown User";
+  };
+
   return (
     <div className="main-content">
-        <div className="feed-section">
-          <SearchBar />
+      <div className="feed-section">
+        <SearchBar />
 
-          <PostCard
-            title="Sanjay Srinivas"
-            time="2 mins ago"
-            text="Lorem ipsum is simply dummy text used in printing."
-          />
-          <PostCard
-            title="Vijay Prakash"
-            time="10 mins ago"
-            text="Upcoming assignment circular updated."
-          />
-        </div>
+        {posts.length > 0 ? (
+          posts.map((post) => {
+            const isLiked =
+              Array.isArray(post.likes) && post.likes.includes(userId);
+            const authorName = getPostAuthorName(post);
 
-        <div className="side-section">
-          <EventsCard 
-              title="Upcoming Events"
-              events={[
-                  {...EventDetails.card1},
-                  {...EventDetails.card2},
-                  {...EventDetails.card3},
-              ]}
-          />
-        </div>
+            return (
+              <div key={post._id} className="post-card">
+                <h4>{authorName}</h4>
+
+                <p>
+                   {post.body || ""}
+                </p>
+                {post.photo && <img src={post.photo} alt="post" />}
+
+                <div className="post-actions">
+                  {isLiked ? (
+                    <button onClick={() => unlikePost(post._id)}>❤ Unlike</button>
+                  ) : (
+                    <button onClick={() => likePost(post._id)}>🤍 Like</button>
+                  )}
+                  <span>{post.likes?.length || 0} likes</span>
+                </div>
+
+                <h4>Comments :</h4>
+                {post.comments?.map((c, idx) => (
+                  <p key={idx}>
+                    <b>{c.name || "Unknown User"}</b> {c.text}
+                  </p>
+                ))}
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    makeComment(commentText[post._id], post._id);
+                  }}>
+                  <input
+                    type="text"
+                    placeholder="Add a comment..."
+                    value={commentText[post._id] || ""}
+                    onChange={(e) =>
+                      setCommentText({ ...commentText, [post._id]: e.target.value })
+                    }/>
+                </form>
+              </div>
+            );
+          })
+        ) : (
+          <p>No posts yet</p>
+        )}
       </div>
-  )
-}
 
-export default HomePage
+
+      <div className="side-section">
+        <EventsCard
+          title="Upcoming Events"
+          events={[
+            { ...EventDetails.card1 },
+            { ...EventDetails.card2 },
+            { ...EventDetails.card3 },
+          ]}
+        />
+      </div>
+    </div>
+  );
+}
