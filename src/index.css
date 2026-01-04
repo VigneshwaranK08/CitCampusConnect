@@ -103,10 +103,26 @@ body {
 .post-card {
   background: #ffffff;
   border-radius: 16px;
-  padding: 18px;
+  padding: 26px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.08);
   margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
 }
+.post-card img{
+  align-self: flex-start;
+  max-height: 15vh;
+  border-radius: 1.5vh;
+}
+.post-card .post-actions button{
+  width: 22vh;
+  height: 7vh;
+  border-radius: 1vh;
+  margin-right: 2vh;
+  box-shadow: 2.55px 2.5px 10px rgba(0, 0, 0, 0.432);
+}
+
 
 .post-header {
   display: flex;

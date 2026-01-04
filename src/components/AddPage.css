@@ -1,0 +1,41 @@
+.APContainer{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.APContainer h2{
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+}
+.APContainer form {
+    display: flex;
+    flex-direction: column;
+    /* gap: 4vh; */
+    margin-bottom: auto;
+}
+.APContainer form button {
+    background-color: #d0d0d0;
+    border: 1px solid white;
+    transition: .2s ease;
+}
+.APContainer form button:hover{
+    background-color: #b5b5b5;
+    border-radius: 0.75vh;
+    border: 1px solid #656565;
+}
+form input,textarea{
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    border: none;
+    padding: 2vh;
+    width: 35vh;
+    transition: 0.25s ease;
+    border-radius: 2vh;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.432);
+}

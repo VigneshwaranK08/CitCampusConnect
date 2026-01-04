@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getAuth } from "firebase/auth"; 
 import API from "../api";
+import './AddPage.css'
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
@@ -43,11 +44,13 @@ export default function CreatePost() {
   };
 
   return (
-    <div style={{ maxWidth: "500px", margin: "auto" }}>
+    <div className="APContainer">
       <h2>Create Post</h2>
 
       <form onSubmit={submitPost}>
+        <p>Post Title</p>
         <input
+          className="PostTitle"
           type="text"
           placeholder="Title"
           value={title}
@@ -55,14 +58,17 @@ export default function CreatePost() {
           required
         />
 
+        <p>Post Content</p>
         <textarea
+          className="PostBody"
           placeholder="Body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           required
         />
-
+        <p>Post Image url</p>
         <input
+          className="PostImg"
           type="text"
           placeholder="Image URL"
           value={pic}
