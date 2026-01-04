@@ -28,9 +28,9 @@
   width: 22vh;
   border-radius: 50%;
   object-fit: cover;
-
-  -webkit-mask-image: radial-gradient(circle, #000 99%, transparent 100%);
-  mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.432);
+  /* -webkit-mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+  mask-image: radial-gradient(circle, #000 99%, transparent 100%); */
 }
 
 .popup-title {
