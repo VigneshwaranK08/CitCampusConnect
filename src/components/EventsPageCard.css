@@ -1,19 +1,22 @@
-.Card{
-    height: 60vh;
-    width: 45vh;
-    background-color: #fff;
-    box-shadow: 0px 2px 10px rgba(0,0,0,0.07);
-    border-radius: 2vh;
-    margin: 2vw;
+.Card {
+  height: 60vh;
+  width: 45vh;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.07);
+  border-radius: 2vh;
+  margin: 2vw;
+  cursor: pointer;
 }
-.Bgimg{
-    margin-top: 5vh;
-    margin-left:9vh;
-    height:25vh;
-    width: 25vh;
-    border-radius: 50%;
-    object-fit: cover;
-    -webkit-mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+
+.Bgimg {
+  margin-top: 5vh;
+  margin-left: 9vh;
+  height: 25vh;
+  width: 25vh;
+  border-radius: 50%;
+  object-fit: cover;
+
+  -webkit-mask-image: radial-gradient(circle, #000 99%, transparent 100%);
   mask-image: radial-gradient(circle, #000 99%, transparent 100%);
 
   -webkit-mask-size: 100% 100%;
@@ -21,24 +24,25 @@
   margin-bottom: 0;
 }
 
-.CardTitle{
-    font-size: 19px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    margin-left: 5vh;
-    margin-top: 5vh;
-    margin-bottom: 0;
+.CardTitle {
+  font-size: 19px;
+  font-weight: 600;
+  margin-left: 5vh;
+  margin-top: 5vh;
 }
-.Organiser{
-    color: #444;
-    margin-bottom: 1vh;
-    margin-left: 8vh;
+
+.Organiser {
+  color: #444;
+  margin-bottom: 1vh;
+  margin-left: 8vh;
 }
-.Organiser .Date{
-    font-size: 12px;
-    margin-left: 9vh;
+
+.Organiser .Date {
+  font-size: 12px;
+  margin-left: 9vh;
 }
-.Desc{
-    color: #444;
-    margin: 0 5vh;
+
+.Desc {
+  color: #444;
+  margin: 0 5vh;
 }

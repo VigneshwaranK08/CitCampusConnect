@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 import SearchBar from "./SearchBar";
 import EventsCard from "./EventsCard";
-import EventDetails from "../EventDetails.json";
+import EventPopup from "./EventPopup";
+import { getEvents } from "./eventsService";
 
 export default function HomePage() {
   const [posts, setPosts] = useState([]);
@@ -88,7 +89,20 @@ export default function HomePage() {
     return "Unknown User";
   };
 
+  const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const data = await getEvents();
+      setEvents(data);
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
+  <>
     <div className="main-content">
       <div className="feed-section">
         <SearchBar />
@@ -149,13 +163,15 @@ export default function HomePage() {
       <div className="side-section">
         <EventsCard
           title="Upcoming Events"
-          events={[
-            { ...EventDetails.card1 },
-            { ...EventDetails.card2 },
-            { ...EventDetails.card3 },
-          ]}
+          events={events}
+          onEventClick={setSelectedEvent}
         />
       </div>
     </div>
+    <EventPopup
+        event={selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+      />
+  </>
   );
 }

@@ -1,24 +1,43 @@
-import React from 'react'
-import './EventsPage.css'
-import EventDetails from '../EventDetails.json'
-import EventsPageCard from './EventsPageCard'
+import React, { useEffect, useState } from 'react';
+import './EventsPage.css';
+import EventsPageCard from './EventsPageCard';
+import EventPopup from './EventPopup';
+import { getEvents } from './eventsService';
 
 function EventsPage() {
+  const [events, setEvents] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  // const CardData = 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const data = await getEvents();
+      setEvents(data);
+    };
+
+    fetchEvents();
+  }, []);
 
   return (
-    <div className='EventsPage'>
+    <>
+      <div className="EventsPage">
         <div className="container">
-            <EventsPageCard {...EventDetails.card1}/>
-            <EventsPageCard {...EventDetails.card2}/>
-            <EventsPageCard {...EventDetails.card3}/>
-            
-            
-
+          {events.map(event => (
+            <EventsPageCard
+              key={event.id}
+              {...event}
+              onEventClick={setSelectedEvent}
+            />
+          ))}
         </div>
-    </div> 
-  )
+      </div>
+
+      {/* Popup */}
+      <EventPopup
+        event={selectedEvent}
+        onClose={() => setSelectedEvent(null)}
+      />
+    </>
+  );
 }
 
-export default EventsPage
+export default EventsPage;

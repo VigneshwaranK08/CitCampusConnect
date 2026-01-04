@@ -1,0 +1,66 @@
+.event-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.event-popup-card {
+  width: 45vh;
+  background: #fff;
+  border-radius: 2vh;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.07);
+  padding-bottom: 2vh;
+  position: relative;
+}
+
+.popup-img-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 3vh;
+}
+
+.popup-img-wrapper img {
+  height: 22vh;
+  width: 22vh;
+  border-radius: 50%;
+  object-fit: cover;
+
+  -webkit-mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+  mask-image: radial-gradient(circle, #000 99%, transparent 100%);
+}
+
+.popup-title {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 3vh 0 1vh;
+  text-align: center;
+}
+
+.popup-organiser {
+  color: #444;
+  font-size: 14px;
+  text-align: center;
+}
+
+.popup-date {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.popup-desc {
+  color: #444;
+  margin: 2vh 4vh 0;
+  text-align: center;
+}
+
+.popup-close {
+  position: absolute;
+  top: 1.5vh;
+  right: 1.5vh;
+  cursor: pointer;
+  font-size: 22px;
+}

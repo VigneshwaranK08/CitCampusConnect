@@ -1,4 +1,4 @@
-export default function EventsCard({ title, events = [] }) {
+export default function EventsCard({ title, events = [], onEventClick }) {
   return (
     <div className="events-card">
       <h3 className="events-title">{title}</h3>
@@ -7,7 +7,11 @@ export default function EventsCard({ title, events = [] }) {
         <p className="no-events">No events available</p>
       ) : (
         events.map((event, index) => (
-          <div key={index} className="event-item">
+          <div
+            key={index}
+            className="event-item"
+            onClick={() => onEventClick && onEventClick(event)}
+          >
             <div className="event-info">
               <h4 className="event-name">{event.CardTitle}</h4>
               <span className="event-club">By {event.Organiser}</span>
