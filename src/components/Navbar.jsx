@@ -10,7 +10,7 @@ export default function Navbar({ active, setActive }) {
     </div>
 
       <div className="nav-icons">
-        {["home", "feed", "add", "chat", "profile"].map((item) => (
+        {["home", "feed", "add", "profile"].map((item) => (
           <div
             key={item}
             className={`nav-item ${active === item ? "active" : ""}`}
@@ -23,8 +23,6 @@ export default function Navbar({ active, setActive }) {
                 ? "dynamic_feed"
                 : item === "add"
                 ? "add_circle"
-                : item === "chat"
-                ? "chat"
                 : "person"}
             </span>
           </div>
