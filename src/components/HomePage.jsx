@@ -32,7 +32,7 @@ export default function HomePage() {
 
   const likePost = async (postId) => {
     try {
-      const res = await fetch("http://localhost:5000/api/like", {
+      const res = await fetch("https://citcampusconnect.onrender.com/api/like", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ postId, userId }),
@@ -46,7 +46,7 @@ export default function HomePage() {
 
   const unlikePost = async (postId) => {
     try {
-      const res = await fetch("http://localhost:5000/api/unlike", {
+      const res = await fetch("https://citcampusconnect.onrender.com/api/unlike", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ postId, userId }),
@@ -62,7 +62,7 @@ export default function HomePage() {
     if (!text) return;
 
     try {
-      const res = await fetch("http://localhost:5000/api/comment", {
+      const res = await fetch("https://citcampusconnect.onrender.com/api/comment", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
