@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Post = mongoose.model("Post");
+const Post = require("../models/post");
 
 // CREATE POST
 router.post("/createpost", async (req, res) => {
@@ -77,6 +77,7 @@ router.put("/comment", async (req, res) => {
 // GET ALL POSTS
 router.get("/allpost", async (req, res) => {
   try {
+    console.log("CONNECTED DB:", mongoose.connection.name);
     const posts = await Post.find().sort("-createdAt");
     res.json({ posts });
   } catch (err) {
