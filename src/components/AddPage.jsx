@@ -29,8 +29,10 @@ export default function CreatePost() {
         title,
         body,
         pic,
-        userId,
-        name: userName, 
+        postedBy: {
+          uid: userId,
+          name: userName
+        }
       });
 
       setMessage("Post created successfully");
