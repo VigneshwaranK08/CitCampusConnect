@@ -5,22 +5,20 @@ const Post = require("../models/post");
 
 // CREATE POST
 router.post("/createpost", async (req, res) => {
-  const { title, body, pic, userId, name } = req.body;
+  const { title, body, photo, postedBy } = req.body;
 
-  if (!title || !body || !pic || !userId || !name)
+  if (!title || !body || !photo || !postedBy?.uid || !postedBy?.name) {
     return res.status(422).json({ error: "All fields required" });
-
+  }
+  console.log("BODY RECEIVED:", req.body);
   try {
     const post = new Post({
       title,
       body,
-      photo: pic,
-      postedBy: {
-        uid: userId,       // Firebase UID
-        name: name,        // Firebase displayName
-      },
+      photo,
+      postedBy,
     });
-
+    
     await post.save();
     res.json(post);
   } catch (err) {

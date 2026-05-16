@@ -1,46 +1,60 @@
 import { useState } from "react";
-import { getAuth } from "firebase/auth"; 
+import { getAuth } from "firebase/auth";
 import API from "../api";
-import './AddPage.css'
+import "./AddPage.css";
 
 export default function CreatePost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [pic, setPic] = useState("");
+  const [photo, setPhoto] = useState("");
   const [message, setMessage] = useState("");
-
-
-  const auth = getAuth();
-  const firebaseUser = auth.currentUser;
-
-  const userId = firebaseUser?.uid;
-  const userName = firebaseUser?.displayName;
 
   const submitPost = async (e) => {
     e.preventDefault();
 
-    if (!userId || !userName) {
-      setMessage("Log in to create a post");
+    const auth = getAuth();
+    const firebaseUser = auth.currentUser;
+
+    if (!firebaseUser) {
+      setMessage("User not logged in");
       return;
     }
 
+    const userId = firebaseUser.uid;
+    const userName = firebaseUser.displayName || "Anonymous";
+
+    if (!title || !body || !photo) {
+      setMessage("All fields required");
+      return;
+    }
+    console.log("SENDING PAYLOAD:", {
+  title,
+  body,
+  photo,
+  postedBy: {
+    uid: auth.currentUser?.uid,
+    name: auth.currentUser?.displayName
+  }
+});
+
     try {
-      const res = await API.post("/createpost", {
+      await API.post("/createpost", {
         title,
         body,
-        pic,
+        photo,
         postedBy: {
           uid: userId,
-          name: userName
-        }
+          name: userName,
+        },
       });
 
       setMessage("Post created successfully");
+
       setTitle("");
       setBody("");
-      setPic("");
-      console.log(res.data);
+      setPhoto("");
     } catch (err) {
+      console.log(err);
       setMessage(err.response?.data?.error || "Something went wrong");
     }
   };
@@ -52,9 +66,6 @@ export default function CreatePost() {
       <form onSubmit={submitPost}>
         <p>Post Title</p>
         <input
-          className="PostTitle"
-          type="text"
-          placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -62,19 +73,15 @@ export default function CreatePost() {
 
         <p>Post Content</p>
         <textarea
-          className="PostBody"
-          placeholder="Body"
           value={body}
           onChange={(e) => setBody(e.target.value)}
           required
         />
-        <p>Post Image url</p>
+
+        <p>Image URL</p>
         <input
-          className="PostImg"
-          type="text"
-          placeholder="Image URL"
-          value={pic}
-          onChange={(e) => setPic(e.target.value)}
+          value={photo}
+          onChange={(e) => setPhoto(e.target.value)}
           required
         />
 

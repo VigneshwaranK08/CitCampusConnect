@@ -2,6 +2,9 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "./firebase";
 import logo from './assets/Group-3.svg'
 import "./Login.css"
+import { updateProfile } from "firebase/auth";
+
+
 
 function Login() {
   const loginWithGoogle = async () => {
