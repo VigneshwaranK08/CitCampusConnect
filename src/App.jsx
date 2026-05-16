@@ -7,7 +7,14 @@ import Home from "./Home";
 
 function App() {
   const [user, setUser] = useState(null);
+  useEffect(() => {
+  const unsub = onAuthStateChanged(auth, (user) => {
+    console.log("AUTH STATE:", user);
+    setUser(user);
+  });
 
+  return unsub;
+}, []);
   useEffect(() => {
     return onAuthStateChanged(auth, setUser);
   }, []);
