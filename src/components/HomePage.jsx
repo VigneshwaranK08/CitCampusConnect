@@ -16,7 +16,7 @@ export default function HomePage() {
   const userName = firebaseUser?.displayName || "Unknown User";
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/allpost")
+    fetch("https://citcampusconnect.onrender.com/api/allpost")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data.posts)) setPosts(data.posts);
